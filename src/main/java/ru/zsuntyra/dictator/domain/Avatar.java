@@ -17,6 +17,7 @@ public class Avatar {
     @GeneratedValue(generator = "avatar_seq_gen", strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @Column(unique = true)
     private String name;
 
     private String color;
