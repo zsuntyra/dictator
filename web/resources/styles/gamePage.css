@@ -1,0 +1,29 @@
+.Page {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+.Menu-bar {
+    width: 100%;
+    height: 10%;
+    border: 1px double black;
+    display: -webkit-inline-flex;
+    display: inline-flex;
+}
+
+.Content{
+    width: 100%;
+    height: 90%;
+    border: 1px double black;
+}
+
+.Menu-bar div{
+    width: 16.66%;
+    border: 1px double black;
+}
+
+body {
+    width: 1034px;
+    margin: auto;
+    height: 800px;
+}

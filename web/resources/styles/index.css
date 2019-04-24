@@ -1,0 +1,12 @@
+body {
+    width: 1034px;
+    margin: auto;
+    height: 800px;
+}
+
+.RegistrationForm {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    border: 1px double black;
+}
