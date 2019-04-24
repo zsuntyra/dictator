@@ -2,7 +2,7 @@ package ru.zsuntyra.dictator.ejb;
 
 import lombok.Getter;
 import lombok.Setter;
-import ru.zsuntyra.dictator.config.ErrorMessage;
+import ru.zsuntyra.dictator.config.Message;
 import ru.zsuntyra.dictator.domain.User;
 import ru.zsuntyra.dictator.repository.UserRepository;
 
@@ -57,14 +57,14 @@ public class AuthEJB {
     // Returns error message or null if no error happened
     public String signUp(String username, String password) {
         if (userRepository.findByUsername(username) != null) {
-            return ErrorMessage.USERNAME_ALREADY_TAKEN;
+            return Message.USERNAME_ALREADY_TAKEN;
         }
 
         if (username.length() < 3) {
-            return ErrorMessage.USERNAME_TOO_SHORT;
+            return Message.USERNAME_TOO_SHORT;
         }
         if (password.length() < 3) {
-            return ErrorMessage.PASSWORD_TOO_SHORT;
+            return Message.PASSWORD_TOO_SHORT;
         }
 
         User user = new User(username, encodeHexString(password.getBytes()));

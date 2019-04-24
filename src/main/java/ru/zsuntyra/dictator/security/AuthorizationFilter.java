@@ -1,6 +1,6 @@
 package ru.zsuntyra.dictator.security;
 
-import ru.zsuntyra.dictator.config.ErrorMessage;
+import ru.zsuntyra.dictator.config.Message;
 import ru.zsuntyra.dictator.ejb.TokenEJB;
 
 import javax.ejb.EJB;
@@ -25,7 +25,7 @@ public class AuthorizationFilter extends HttpFilter {
         if (session != null) {
             String token = (String) session.getAttribute(TOKEN_NAME);
             if (!isTokenValid(token)) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, ErrorMessage.UNAUTHORIZED);
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, Message.UNAUTHORIZED);
             }
         }
         chain.doFilter(request, response);
