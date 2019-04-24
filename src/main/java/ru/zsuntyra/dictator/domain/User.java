@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -41,4 +43,15 @@ public class User {
     @JoinTable(name = "usr_avatar")
     private Set<Avatar> avatars;
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.progress = 0;
+        this.activeAvatarId = null;
+        this.rating = new Rating();
+        rating.setDate(new Date());
+        rating.setUser(this);
+        this.associates = new HashSet<>();
+        this.avatars = new HashSet<>();
+    }
 }

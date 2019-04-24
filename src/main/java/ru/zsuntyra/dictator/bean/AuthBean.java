@@ -15,5 +15,6 @@ public class AuthBean implements Serializable {
 
     private String username;
     private String password;
+    // TODO add ErrorMessageBean and use it here
 
 }

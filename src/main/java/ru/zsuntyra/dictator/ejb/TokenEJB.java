@@ -21,4 +21,13 @@ public class TokenEJB {
 
     private Map<String, User> authorizedUsers;
 
+    public String findToken(User user) {
+        for (Map.Entry<String, User> entry : authorizedUsers.entrySet()) {
+            if (entry.getValue().equals(user)) {
+                return entry.getKey();
+            }
+        }
+        return null;
+    }
+
 }
