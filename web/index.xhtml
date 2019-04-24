@@ -5,7 +5,31 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+<h:head>
+    <title>StartPage</title>
+    <h:outputStylesheet library="styles"/>
+    <h:outputScript library="scripts"/>
+</h:head>
+<h:body>
+    <f:view>
+        <h:form>
+            <h:outputText value="Username: "/>
+            <h:inputText id="username" value="username" maxlength="64" minlenght="3" required="true"/>
+            <h:message for="username"/>
+            <br/><br/>
+
+            <h:outputText value="Password: "/>
+            <h:inputSecret id="password" value="password" maxlength="64" minlenght="3" required="true"/>
+            <h:message for="password"/>
+            <br/><br/>
+
+            <h:commandButton styleClass="buttonToMain" action="Login" value="Login"/>
+            <h:commandButton styleClass="buttonToMain" action="singUp" value="Sign up"/>
+<!--            <h:outputLabel value="#{messageBean.errorMessage}" rendered="#{not empty messageBean.errorMessage}"/>-->
+        </h:form>
+        <br/>
+        <h:button value="to GamePage" outcome="Game"/>
+    </f:view>
+</h:body>
+
 </html>
