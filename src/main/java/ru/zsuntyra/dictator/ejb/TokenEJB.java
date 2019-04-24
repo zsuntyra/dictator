@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import ru.zsuntyra.dictator.domain.User;
 
-import javax.ejb.Init;
+import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,7 @@ import java.util.Map;
 @Singleton
 public class TokenEJB {
 
-    @Init
+    @PostConstruct
     public void init() {
         authorizedUsers = new HashMap<>();
     }
