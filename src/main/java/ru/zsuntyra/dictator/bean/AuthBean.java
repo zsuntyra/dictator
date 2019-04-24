@@ -7,9 +7,9 @@ import ru.zsuntyra.dictator.config.PathConfig;
 import ru.zsuntyra.dictator.ejb.AuthEJB;
 
 import javax.ejb.EJB;
+import javax.faces.annotation.ManagedProperty;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.inject.Inject;
 import java.io.Serializable;
 
 @Getter
@@ -21,13 +21,13 @@ public class AuthBean implements Serializable {
     @EJB
     private AuthEJB authEJB;
 
-    @Inject
+    @ManagedProperty("#{messageBean}")
     private MessageBean messageBean;
 
     private String username;
     private String password;
 
-    public String singIn() {
+    public String signIn() {
         if (username != null && password != null && authEJB.login(username, password)) {
             messageBean.setCurrentMessage(null);
             return PathConfig.REDIRECT_TO_GAME;
