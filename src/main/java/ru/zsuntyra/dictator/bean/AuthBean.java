@@ -2,19 +2,50 @@ package ru.zsuntyra.dictator.bean;
 
 import lombok.Getter;
 import lombok.Setter;
+import ru.zsuntyra.dictator.config.Message;
+import ru.zsuntyra.dictator.config.PathConfig;
+import ru.zsuntyra.dictator.ejb.AuthEJB;
 
-import javax.annotation.ManagedBean;
-import javax.enterprise.context.SessionScoped;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
 import java.io.Serializable;
 
 @Getter
 @Setter
-@ManagedBean
+@ManagedBean(name = "authBean", eager = true)
 @SessionScoped
 public class AuthBean implements Serializable {
 
+    @EJB
+    private AuthEJB authEJB;
+
+    @Inject
+    private MessageBean messageBean;
+
     private String username;
     private String password;
-    // TODO add ErrorMessageBean and use it here
+
+    public String singIn() {
+        if (username != null && password != null && authEJB.login(username, password)) {
+            messageBean.setCurrentMessage(null);
+            return PathConfig.REDIRECT_TO_GAME;
+        } else {
+            messageBean.setCurrentMessage(Message.INVALID_CREDENTIALS);
+            return null;
+        }
+    }
+
+    public void signUp() {
+        if (username != null && password != null) {
+            String errorMessage = authEJB.signUp(username, password);
+            if (errorMessage == null) {
+                messageBean.setCurrentMessage(Message.REGISTER_SUCCESS);
+            } else {
+                messageBean.setCurrentMessage(errorMessage);
+            }
+        }
+    }
 
 }
