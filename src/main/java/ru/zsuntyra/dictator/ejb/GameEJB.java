@@ -4,9 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 import ru.zsuntyra.dictator.domain.*;
 import ru.zsuntyra.dictator.repository.QuestionRepository;
+import ru.zsuntyra.dictator.repository.RatingRepository;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.Random;
 
 @Getter
@@ -16,6 +22,12 @@ public class GameEJB {
 
     @Inject
     private QuestionRepository questionRepository;
+
+    @Inject
+    private RatingRepository ratingRepository;
+
+    @EJB
+    private TokenEJB tokenEJB;
 
     private GameState gameState;
 
@@ -34,9 +46,37 @@ public class GameEJB {
 
         updateRespect(answer.getRespectImpact());
         updateMoney();
-        // TODO add calling end game checker
+
+        if (gameState.getFractionCoefficients().values()
+                .stream().anyMatch(coefficient -> coefficient <= -10)) {
+            gameState.setDeadCounter(gameState.getDeadCounter() + 1);
+        }
 
         return gameState;
+    }
+
+    public boolean isGameFinished() {
+        if (gameState.getRespect() <= 0 || gameState.getDeadCounter() == 3) {
+            updateRating();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void updateRating() {
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        HttpServletRequest request = (HttpServletRequest) context.getRequest();
+
+        String token = (String) request.getSession(false).getAttribute(AuthEJB.TOKEN_ATTRIBUTE_NAME);
+        User user = tokenEJB.getAuthorizedUsers().get(token);
+
+        Rating rating = ratingRepository.findByUserId(user.getId());
+        if (rating.getProgress() < gameState.getStepNumber()) {
+            rating.setProgress(gameState.getStepNumber());
+            rating.setDate(new Date());
+            ratingRepository.update(rating);
+        }
     }
 
     private void updateRespect(int impact) {

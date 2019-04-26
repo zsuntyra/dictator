@@ -28,7 +28,7 @@ public class AuthEJB {
     @Inject
     private UserRepository userRepository;
 
-    private static final String TOKEN_ATTRIBUTE_NAME = "AuthToken";
+    public static final String TOKEN_ATTRIBUTE_NAME = "AuthToken";
 
     public boolean login(String username, String password) {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
