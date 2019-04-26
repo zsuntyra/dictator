@@ -1,7 +1,6 @@
 package ru.zsuntyra.dictator.domain;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -25,6 +24,8 @@ public class GameState {
 
     private int stepNumber;
 
+    private int deadCounter;
+
     public GameState(Fraction userFraction, List<Associate> associates) {
         this.userFraction = userFraction;
         this.associates = new ArrayList<>(associates);
@@ -35,5 +36,7 @@ public class GameState {
             this.fractionCoefficients.put(f, 5); // 5 is default Fraction coefficient
         }
     }
+
+
 
 }

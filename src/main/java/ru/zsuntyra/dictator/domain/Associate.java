@@ -21,7 +21,9 @@ public class Associate {
 
     private String name;
 
-    /** Every point in coefficients adds 5% to chance rising Fraction points */
+    /**
+     * Every point in coefficients adds 5% to chance rising Fraction points
+     */
     private int peopleCoefficient;
 
     private int armyCoefficient;
@@ -38,5 +40,22 @@ public class Associate {
 
     @ManyToMany(mappedBy = "associates")
     private Set<User> users;
+
+    public int getCoefficientByFranction(Fraction fraction) {
+        switch (fraction) {
+            case PEOPLE:
+                return peopleCoefficient;
+            case ARMY:
+                return armyCoefficient;
+            case POLICE:
+                return policeCoefficient;
+            case HUMAN_RIGHT_DEFENDERS:
+                return humanRightDefendersCoefficient;
+            case POWER:
+                return powerCoefficient;
+            default:
+                return 0;
+        }
+    }
 
 }
