@@ -1,6 +1,5 @@
 package ru.zsuntyra.dictator.domain;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +21,7 @@ public class Associate {
 
     private String name;
 
+    /** Every point in coefficients adds 5% to chance rising Fraction points */
     private int peopleCoefficient;
 
     private int armyCoefficient;
