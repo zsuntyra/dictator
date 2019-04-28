@@ -22,13 +22,13 @@ import java.util.Random;
 @Stateless
 public class AuthEJB {
 
+    public static final String TOKEN_ATTRIBUTE_NAME = "AuthToken";
+
     @EJB
     private TokenEJB tokenEJB;
 
     @Inject
     private UserRepository userRepository;
-
-    public static final String TOKEN_ATTRIBUTE_NAME = "AuthToken";
 
     public boolean login(String username, String password) {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();

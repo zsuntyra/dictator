@@ -14,12 +14,12 @@ import java.util.Map;
 @Singleton
 public class TokenEJB {
 
+    private Map<String, User> authorizedUsers;
+
     @PostConstruct
     public void init() {
         authorizedUsers = new HashMap<>();
     }
-
-    private Map<String, User> authorizedUsers;
 
     public String findToken(User user) {
         for (Map.Entry<String, User> entry : authorizedUsers.entrySet()) {

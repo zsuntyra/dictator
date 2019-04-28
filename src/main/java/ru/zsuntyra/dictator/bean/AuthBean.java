@@ -7,8 +7,8 @@ import ru.zsuntyra.dictator.config.PathConfig;
 import ru.zsuntyra.dictator.ejb.AuthEJB;
 
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 

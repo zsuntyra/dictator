@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 @Getter
@@ -30,6 +31,11 @@ public class GameEJB {
     private TokenEJB tokenEJB;
 
     private GameState gameState;
+
+    public GameState startGame(Fraction userFraction, List<Associate> associates) {
+        gameState = new GameState(userFraction, associates);
+        return gameState;
+    }
 
     public Question getNextQuestion() {
         return questionRepository.getRandomQuestion();
@@ -116,7 +122,6 @@ public class GameEJB {
         relationship = relationship < -15 ? -15 : relationship;
 
         gameState.getFractionCoefficients().put(fraction, relationship);
-
     }
 
 }

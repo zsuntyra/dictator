@@ -19,6 +19,10 @@ public abstract class JpaRepository<T> {
         this.entityClass = entityClass;
     }
 
+    public static <T> T getElementOrNull(List<T> resultList) {
+        return resultList.isEmpty() ? null : resultList.get(0);
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(entityManagerFactory, entityManager);
@@ -36,10 +40,6 @@ public abstract class JpaRepository<T> {
         if (entityManager.isOpen() && entityManager != null) {
             entityManager.close();
         }
-    }
-
-    public static <T> T getElementOrNull(List<T> resultList) {
-        return resultList.isEmpty() ? null : resultList.get(0);
     }
 
     public void create(T entity) {
