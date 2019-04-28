@@ -41,7 +41,7 @@ public class Associate {
     @ManyToMany(mappedBy = "associates")
     private Set<User> users;
 
-    public int getCoefficientByFranction(Fraction fraction) {
+    public int getCoefficientByFraction(Fraction fraction) {
         switch (fraction) {
             case PEOPLE:
                 return peopleCoefficient;

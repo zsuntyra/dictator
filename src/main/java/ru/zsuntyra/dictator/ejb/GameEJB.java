@@ -113,7 +113,7 @@ public class GameEJB {
         int relationship = gameState.getFractionCoefficients().get(fraction) + impact;
 
         for (Associate associate : gameState.getAssociates()) {
-            if (new Random().nextInt(100) < associate.getCoefficientByFranction(fraction) * 5) {
+            if (new Random().nextInt(100) < associate.getCoefficientByFraction(fraction) * 5) {
                 relationship++;
             }
         }

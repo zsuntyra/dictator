@@ -29,6 +29,8 @@ public class User {
 
     private int progress;
 
+    private int money;
+
     private Long activeAvatarId;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -46,7 +48,6 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.progress = 0;
         this.activeAvatarId = null;
         this.rating = new Rating();
         rating.setDate(new Date());
