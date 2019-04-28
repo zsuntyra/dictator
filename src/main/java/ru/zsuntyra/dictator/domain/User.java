@@ -34,11 +34,11 @@ public class User {
     private Long activeAvatarId;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "rating_id", referencedColumnName = "id")
     private Rating rating;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "associate_id", referencedColumnName = "id")
     private Associate associate;
 
     @ManyToMany
