@@ -11,7 +11,6 @@ import javax.ejb.Stateless;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Getter
@@ -42,6 +41,12 @@ public class ShopEJB {
         customer.getAssociates().add(product);
 
         userRepository.update(customer);
+
+        User seller = product.getSeller();
+        if (seller != null) {
+            seller.setMoney((int) (seller.getMoney() + product.getCost() * 0.1));
+        }
+        userRepository.update(seller);
         // FIXME Should I update the product ?
         return true;
     }
