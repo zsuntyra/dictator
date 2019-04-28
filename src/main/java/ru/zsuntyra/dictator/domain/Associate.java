@@ -38,6 +38,9 @@ public class Associate {
 
     private int cost;
 
+    @OneToOne(mappedBy = "associate")
+    private User seller;
+
     @ManyToMany(mappedBy = "associates")
     private Set<User> users;
 

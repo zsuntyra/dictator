@@ -37,6 +37,10 @@ public class User {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Rating rating;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private Associate associate;
+
     @ManyToMany
     @JoinTable(name = "usr_associate")
     private Set<Associate> associates;
