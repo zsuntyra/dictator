@@ -2,10 +2,11 @@ package ru.zsuntyra.dictator.bean;
 
 import lombok.Getter;
 import lombok.Setter;
+import ru.zsuntyra.dictator.bean.MessageBean;
 import ru.zsuntyra.dictator.config.Message;
 import ru.zsuntyra.dictator.config.PathConfig;
 import ru.zsuntyra.dictator.domain.*;
-import ru.zsuntyra.dictator.ejb.RatingEJB;
+import ru.zsuntyra.dictator.ejb.ProfileEJB;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -19,19 +20,25 @@ import java.util.Map;
 
 @Getter
 @Setter
-@ManagedBean(name = "ratingBean", eager = true)
+@ManagedBean(name = "profileBean", eager = true)
 @SessionScoped
-public class RatingBean implements Serializable {
+public class ProfileBean implements Serializable {
 
     @EJB
-    private RatingEJB ratingEJB;
+    private ProfileEJB profileEJB;
 
     @ManagedProperty("#{messageBean}")
     private MessageBean messageBean;
 
-
-    public List<Rating> getTopOfRating(){
-            return ratingEJB.getTop50PlayersByRating();
+    public User getInfoUser(){
+       return profileEJB.getCurrentUser();
     }
 
+    public int getUserLVL(){
+        return profileEJB.getUserLevel();
+    }
+
+    public int getAvailablePointsAmount(){
+        return profileEJB.getAvailablePointsAmount();
+    }
 }

@@ -1,5 +1,6 @@
 package ru.zsuntyra.dictator.ejb;
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import lombok.Getter;
 import lombok.Setter;
 import ru.zsuntyra.dictator.domain.Associate;
@@ -8,10 +9,13 @@ import ru.zsuntyra.dictator.domain.User;
 import ru.zsuntyra.dictator.repository.AssociateRepository;
 import ru.zsuntyra.dictator.repository.UserRepository;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Getter
 @Setter
@@ -24,9 +28,22 @@ public class ProfileEJB {
     @Inject
     private AssociateRepository associateRepository;
 
+    @EJB
+    private TokenEJB tokenEJB;
+
     public User getCurrentUser() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        return userRepository.findByUsername(context.getUserPrincipal().getName());
+        HttpServletRequest request = (HttpServletRequest) context.getRequest();
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            return null;
+        }
+
+        if (tokenEJB.getAuthorizedUsers().containsKey((String) session.getAttribute(AuthEJB.TOKEN_ATTRIBUTE_NAME))) {
+            return tokenEJB.getAuthorizedUsers().get((String) session.getAttribute(AuthEJB.TOKEN_ATTRIBUTE_NAME));
+        }
+
+        return null;
     }
 
     public int getUserLevel() {

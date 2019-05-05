@@ -37,7 +37,12 @@
                 </div>
             </div>
             <div class="Content">
-                Profile
+                Username:
+                <h:outputText value="#{profileBean.infoUser.username}"/><br/>
+                Level:
+                <h:outputText value="#{profileBean.userLVL}"/><br/>
+                Available Points:
+                <h:outputText value="#{profileBean.availablePointsAmount}"/>
             </div>
         </div>
     </f:view>
