@@ -42,7 +42,18 @@
                 Level:
                 <h:outputText value="#{profileBean.userLVL}"/><br/>
                 Available Points:
-                <h:outputText value="#{profileBean.availablePointsAmount}"/>
+                <h:outputText value="#{profileBean.availablePointsAmount}"/><br/>
+                Create Associate:
+                <h:form>
+                    <h:inputText value="#{profileBean.name}"/><br/>
+                    <h:inputText value="#{profileBean.armyPoints}"/><br/>
+                    <h:inputText value="#{profileBean.peoplePoints}"/><br/>
+                    <h:inputText value="#{profileBean.policePoints}"/><br/>
+                    <h:inputText value="#{profileBean.powerPoints}"/><br/>
+                    <h:inputText value="#{profileBean.humanRightDefendersPoints}"/><br/>
+                    <h:inputText value="#{profileBean.moneyPoints}"/><br/>
+                    <h:commandButton value="Добавить" action="#{profileBean.createAssociate}"/>
+                </h:form>
             </div>
         </div>
     </f:view>
