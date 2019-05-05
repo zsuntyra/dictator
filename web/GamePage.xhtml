@@ -33,7 +33,9 @@
                    <h:button value="Help" outcome="help"/>
                </div>
                <div>
-                   <h:button value="Exit" outcome="index"/>
+                   <h:form>
+                       <h:commandButton value="Exit" action="#{authBean.logout}"/>
+                   </h:form>
                </div>
            </div>
            <div class="Content">

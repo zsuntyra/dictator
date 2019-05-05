@@ -38,7 +38,8 @@ public class Associate {
 
     private int cost;
 
-    @OneToOne(mappedBy = "associate")
+    @OneToOne
+    @JoinColumn(name = "seller_id", referencedColumnName = "id")
     private User seller;
 
     @ManyToMany(mappedBy = "associates")

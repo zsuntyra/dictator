@@ -33,11 +33,29 @@
                     <h:button value="Help" outcome="help"/>
                 </div>
                 <div>
-                    <h:button value="Exit" outcome="index"/>
+                    <h:form>
+                        <h:commandButton value="Exit" action="#{authBean.logout}"/>
+                    </h:form>
                 </div>
             </div>
             <div class="Content">
-                Shop
+                Shop Associate:<br/>
+                <ui:repeat value="#{shopBean.allAssociates}" var="elem">
+                    <h:outputText value="#{elem.name}"/>&nbsp;&nbsp;
+                    <h:outputText value="#{elem.cost}"/>&nbsp;&nbsp;
+                    <h:form>
+                        <h:commandButton action="#{shopBean.buyAssociate(elem)}"/>
+                    </h:form>
+<!--                    <h:outputText value="#{elem.moneyCoefficient}"/>-->
+                    <br/><br/>
+                </ui:repeat><br/>
+                Shop Avatar:<br/>
+                <ui:repeat value="#{shopBean.allAvatars}" var="avatar">
+                    <h:outputText value="#{avatar.name}"/>&nbsp;&nbsp;
+                    <h:outputText value="#{avatar.cost}"/>&nbsp;&nbsp;
+                    <!--                    <h:outputText value="#{elem.moneyCoefficient}"/>-->
+                    <br/><br/>
+                </ui:repeat><br/>
             </div>
         </div>
     </f:view>

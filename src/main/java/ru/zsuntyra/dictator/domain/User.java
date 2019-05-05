@@ -37,8 +37,7 @@ public class User {
     @JoinColumn(name = "rating_id", referencedColumnName = "id")
     private Rating rating;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "associate_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "seller")
     private Associate associate;
 
     @ManyToMany
