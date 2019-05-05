@@ -8,10 +8,7 @@ import ru.zsuntyra.dictator.repository.RatingRepository;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -29,6 +26,9 @@ public class GameEJB {
 
     @EJB
     private TokenEJB tokenEJB;
+
+    @EJB
+    private AuthEJB authEJB;
 
     private GameState gameState;
 
@@ -76,13 +76,9 @@ public class GameEJB {
     }
 
     private void updateRating() {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        HttpServletRequest request = (HttpServletRequest) context.getRequest();
-
-        String token = (String) request.getSession(false).getAttribute(AuthEJB.TOKEN_ATTRIBUTE_NAME);
-        User user = tokenEJB.getAuthorizedUsers().get(token);
-
+        User user = authEJB.getAuthorizedUser();
         Rating rating = ratingRepository.findByUserId(user.getId());
+
         if (rating.getProgress() < gameState.getStepNumber()) {
             rating.setProgress(gameState.getStepNumber());
             rating.setDate(new Date());

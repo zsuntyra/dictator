@@ -6,6 +6,7 @@ import ru.zsuntyra.dictator.bean.MessageBean;
 import ru.zsuntyra.dictator.config.Message;
 import ru.zsuntyra.dictator.config.PathConfig;
 import ru.zsuntyra.dictator.domain.*;
+import ru.zsuntyra.dictator.ejb.AuthEJB;
 import ru.zsuntyra.dictator.ejb.ProfileEJB;
 
 import javax.ejb.EJB;
@@ -27,11 +28,14 @@ public class ProfileBean implements Serializable {
     @EJB
     private ProfileEJB profileEJB;
 
+    @EJB
+    private AuthEJB authEJB;
+
     @ManagedProperty("#{messageBean}")
     private MessageBean messageBean;
 
     public User getInfoUser(){
-       return profileEJB.getCurrentUser();
+       return authEJB.getAuthorizedUser();
     }
 
     public int getUserLVL(){

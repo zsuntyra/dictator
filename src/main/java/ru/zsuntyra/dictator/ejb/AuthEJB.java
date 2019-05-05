@@ -87,6 +87,20 @@ public class AuthEJB {
         }
     }
 
+    public User getAuthorizedUser() {
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        HttpServletRequest request = (HttpServletRequest) context.getRequest();
+        HttpSession session = request.getSession(false);
+
+        if (session != null && session.getAttribute(TOKEN_ATTRIBUTE_NAME) != null) {
+            String token = (String) session.getAttribute(TOKEN_ATTRIBUTE_NAME);
+            if (tokenEJB.getAuthorizedUsers().containsKey(token)) {
+                return tokenEJB.getAuthorizedUsers().get(token);
+            }
+        }
+        return null;
+    }
+
     private String encodeHexString(byte[] byteArray) {
         StringBuilder sb = new StringBuilder();
         for (byte b : byteArray) {
