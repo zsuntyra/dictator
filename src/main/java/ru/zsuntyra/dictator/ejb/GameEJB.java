@@ -5,6 +5,7 @@ import lombok.Setter;
 import ru.zsuntyra.dictator.domain.*;
 import ru.zsuntyra.dictator.repository.QuestionRepository;
 import ru.zsuntyra.dictator.repository.RatingRepository;
+import ru.zsuntyra.dictator.repository.UserRepository;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
@@ -23,6 +24,9 @@ public class GameEJB {
 
     @Inject
     private RatingRepository ratingRepository;
+
+    @Inject
+    private UserRepository userRepository;
 
     @EJB
     private TokenEJB tokenEJB;
@@ -68,14 +72,23 @@ public class GameEJB {
 
     public boolean isGameFinished() {
         if (gameState.getRespect() <= 0 || gameState.getDeadCounter() == 3) {
-            updateRating();
+            updateRatingAfterGame();
+            updateUserAfterGame();
             return true;
         } else {
             return false;
         }
     }
 
-    private void updateRating() {
+    private void updateUserAfterGame() {
+        User user = authEJB.getAuthorizedUser();
+        user.setMoney(user.getMoney() + gameState.getMoney());
+        user.setProgress(user.getProgress() + gameState.getStepNumber());
+
+        userRepository.update(user);
+    }
+
+    private void updateRatingAfterGame() {
         User user = authEJB.getAuthorizedUser();
         Rating rating = ratingRepository.findByUserId(user.getId());
 
