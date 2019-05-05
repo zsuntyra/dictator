@@ -59,7 +59,7 @@ public class ProfileEJB {
         }
 
         int distributedPoints = calculateDistributedPoints(associate);
-        return distributedPoints < getAvailablePointsAmount();
+        return distributedPoints <= getAvailablePointsAmount();
     }
 
     private int calculateDistributedPoints(Associate associate) {

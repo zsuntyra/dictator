@@ -3,8 +3,10 @@ package ru.zsuntyra.dictator.ejb;
 import lombok.Getter;
 import lombok.Setter;
 import ru.zsuntyra.dictator.domain.Associate;
+import ru.zsuntyra.dictator.domain.Avatar;
 import ru.zsuntyra.dictator.domain.User;
 import ru.zsuntyra.dictator.repository.AssociateRepository;
+import ru.zsuntyra.dictator.repository.AvatarRepository;
 import ru.zsuntyra.dictator.repository.UserRepository;
 
 import javax.ejb.EJB;
@@ -22,6 +24,9 @@ public class ShopEJB {
 
     @Inject
     private UserRepository userRepository;
+
+    @Inject
+    private AvatarRepository avatarRepository;
 
     @EJB
     private AuthEJB authEJB;
@@ -50,6 +55,26 @@ public class ShopEJB {
         }
         userRepository.update(seller);
         // FIXME Should I update the product ?
+        return true;
+    }
+
+    public List<Avatar> getAllAvatars() {
+        return avatarRepository.findAll();
+    }
+
+    public boolean buyAvatar(long avatarId) {
+        User customer = authEJB.getAuthorizedUser();
+        Avatar product = avatarRepository.findById(avatarId);
+
+        if (customer.getAvatars().contains(product) || customer.getMoney() < product.getCost()) {
+            return false;
+        }
+
+        product.getUsers().add(customer);
+        customer.setMoney(customer.getMoney() - product.getCost());
+        customer.getAvatars().add(product);
+
+        userRepository.update(customer);
         return true;
     }
 
