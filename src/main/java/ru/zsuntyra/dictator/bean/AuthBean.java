@@ -48,8 +48,9 @@ public class AuthBean implements Serializable {
         }
     }
 
-    public String logout(){
+    public String logout() {
         authEJB.logout();
         return PathConfig.REDIRECT_TO_LOGIN;
     }
+
 }

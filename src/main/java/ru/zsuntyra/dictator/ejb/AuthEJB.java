@@ -11,11 +11,7 @@ import javax.ejb.Stateless;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.security.enterprise.SecurityContext;
-import javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
-import javax.security.enterprise.credential.UsernamePasswordCredential;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.math.BigInteger;
 import java.security.SecureRandom;
@@ -83,6 +79,7 @@ public class AuthEJB {
         HttpSession session = request.getSession(false);
 
         if (session != null && session.getAttribute(TOKEN_ATTRIBUTE_NAME) != null) {
+            tokenEJB.getAuthorizedUsers().remove((String) session.getAttribute(TOKEN_ATTRIBUTE_NAME));
             session.removeAttribute(TOKEN_ATTRIBUTE_NAME);
         }
     }
