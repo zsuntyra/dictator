@@ -33,8 +33,13 @@ public class GameEJB {
     private GameState gameState;
 
     public GameState startGame(Fraction userFraction, List<Associate> associates) {
-        gameState = new GameState(userFraction, associates);
-        return gameState;
+        try {
+            gameState = new GameState(userFraction, associates);
+            return gameState;
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        }
     }
 
     public Question getNextQuestion() {

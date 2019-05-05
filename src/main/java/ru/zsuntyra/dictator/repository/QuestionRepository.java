@@ -6,6 +6,7 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.math.BigInteger;
 import java.util.Random;
 
 @Singleton
@@ -18,10 +19,10 @@ public class QuestionRepository extends JpaRepository<Question> {
 
     public Question getRandomQuestion() {
         Query countQuery = getEntityManager().createNativeQuery("SELECT count(*) FROM Question");
-        long count = (Long) countQuery.getSingleResult();
+        BigInteger count = (BigInteger) countQuery.getSingleResult();
 
         Random random = new Random();
-        int number = random.nextInt((int) count);
+        int number = random.nextInt(count.intValue());
 
         TypedQuery<Question> selectQuery = getEntityManager()
                 .createQuery("SELECT q FROM Question q", Question.class);

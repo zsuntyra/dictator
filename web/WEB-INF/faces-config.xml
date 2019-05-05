@@ -8,7 +8,7 @@
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>Game</from-outcome>
+            <from-outcome>game</from-outcome>
             <to-view-id>/GamePage.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
@@ -19,6 +19,142 @@
         <navigation-case>
             <from-outcome>index</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>help</from-outcome>
+            <to-view-id>/Help.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>profile</from-outcome>
+            <to-view-id>/Profile.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>shop</from-outcome>
+            <to-view-id>/Shop.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>rating</from-outcome>
+            <to-view-id>/Rating.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/Profile.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>help</from-outcome>
+            <to-view-id>/Help.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+        <from-outcome>game</from-outcome>
+        <to-view-id>/GamePage.xhtml</to-view-id>
+        <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>shop</from-outcome>
+            <to-view-id>/Shop.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>rating</from-outcome>
+            <to-view-id>/Rating.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/Shop.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>help</from-outcome>
+            <to-view-id>/Help.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>game</from-outcome>
+            <to-view-id>/GamePage.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>profile</from-outcome>
+            <to-view-id>/Profile.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>rating</from-outcome>
+            <to-view-id>/Rating.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/Help.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>game</from-outcome>
+            <to-view-id>/GamePage.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>profile</from-outcome>
+            <to-view-id>/Profile.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>shop</from-outcome>
+            <to-view-id>/Shop.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>rating</from-outcome>
+            <to-view-id>/Rating.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/Rating.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>help</from-outcome>
+            <to-view-id>/Help.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>game</from-outcome>
+            <to-view-id>/GamePage.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>profile</from-outcome>
+            <to-view-id>/Profile.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>shop</from-outcome>
+            <to-view-id>/Shop.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>

@@ -2,9 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+>
 <h:head>
     <title>GamePage</title>
     <h:outputStylesheet library="styles" name="gamePage.css"/>
@@ -14,27 +17,65 @@
     <f:view>
        <div class="Page">
            <div class="Menu-bar">
-                <div>
-                    Game
-                </div>
-                <div>
-                    Profile
-                </div>
-                <div>
-                    Shop
-                </div>
-                <div>
-                    Rating
-                </div>
-                <div>
-                    Help
-                </div>
-                <div>
-                    Exit
-                </div>
+               <div>
+                   Game
+               </div>
+               <div>
+                   <h:button value="Profile" outcome="profile"/>
+               </div>
+               <div>
+                   <h:button value="Shop" outcome="shop"/>
+               </div>
+               <div>
+                   <h:button value="Rating" outcome="rating"/>
+               </div>
+               <div>
+                   <h:button value="Help" outcome="help"/>
+               </div>
+               <div>
+                   <h:button value="Exit" outcome="index"/>
+               </div>
            </div>
            <div class="Content">
-               <h:button value="to Index" outcome="index"/>
+               <div class="startgame">
+                   <h:form>
+                       <h:inputText id="fraction" value="#{gameBean.userFraction}" maxlength="64" minlenght="3" required="true"/>
+                       <h:commandButton styleClass="buttonToMain" action="#{gameBean.startGame}" value="Start"/>
+                       <h:outputLabel value="#{messageBean.currentMessage}" rendered="#{not empty messageBean.currentMessage}"/>
+                   </h:form>
+                   <br/>
+                   <br/>
+                   <br/>
+               </div>
+               <div class="Main">
+                   <p>Choose fraction:</p>
+                   <h:outputText value="#{gameBean.gameState.userFraction}"/>
+                   <p>Money:</p>
+                   <h:outputText value="#{gameBean.gameState.money}"/>
+                   <p>Turn:</p>
+                   <h:outputText value="#{gameBean.gameState.stepNumber}"/>
+                   <p>Respect:</p>
+                   <h:outputText value="#{gameBean.gameState.respect}"/>
+                   <p>DeadCounter:</p>
+                   <h:outputText value="#{gameBean.gameState.deadCounter}"/>
+                   <p>Fractions:</p>
+                   <ui:repeat value="#{gameBean.fractionCoefficients}" var="elem">
+                       <h:outputText value="#{elem.key}"></h:outputText>
+                       <h:outputText value="#{elem.value}"/>
+                       <br/>
+                   </ui:repeat>
+                   <br/>
+                   <p>Question:</p>
+                   <h:outputText value="#{gameBean.question.text}"/>
+                   <br/>
+                   <h:form>
+                       <ui:repeat value="#{gameBean.question.answers}" var="ans">
+                           <h:commandButton value="#{ans.text}" action="#{gameBean.nextStep(ans)}"/>
+                           <br/>
+                       </ui:repeat>
+                   </h:form>
+                   <br/>
+               </div>
            </div>
        </div>
     </f:view>

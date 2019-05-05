@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+<h:head>
+    <title>Rating</title>
+    <h:outputStylesheet library="styles" name="gamePage.css"/>
+    <h:outputScript library="scripts"/>
+</h:head>
+<h:body>
+    <f:view>
+        <div class="Page">
+            <div class="Menu-bar">
+                <div>
+                    <h:button value="Game" outcome="game"/>
+                </div>
+                <div>
+                    <h:button value="Profile" outcome="profile"/>
+                </div>
+                <div>
+                    <h:button value="Shop" outcome="shop"/>
+                </div>
+                <div>
+                    Rating
+                </div>
+                <div>
+                    <h:button value="Help" outcome="help"/>
+                </div>
+                <div>
+                    <h:button value="Exit" outcome="index"/>
+                </div>
+            </div>
+            <div class="Content">
+                Rating<br/>
+                <ui:repeat value="#{ratingBean.topOfRating}" var="elem">
+                    <h:outputText value="#{elem.user.username}"/>&nbsp;&nbsp;
+                    <h:outputText value="#{elem.date}"/>&nbsp;&nbsp;
+                    <h:outputText value="#{elem.progress}"/>
+                    <br/><br/>
+                </ui:repeat>
+            </div>
+        </div>
+    </f:view>
+</h:body>
+</html>

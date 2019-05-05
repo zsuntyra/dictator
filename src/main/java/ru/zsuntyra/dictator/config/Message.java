@@ -14,4 +14,6 @@ public class Message {
 
     public static final String INVALID_CREDENTIALS = "Wrong login or password";
 
+    public static final String GAME_WAS_NOT_STARTED = "Game was not started for unknown reason";
+
 }

@@ -10,6 +10,6 @@
         <property name="hibernate.connection.password">postgres</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
         <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.hbm2ddl.auto">create-drop</property> <!-- FIXME should be "validate" -->
+        <property name="hibernate.hbm2ddl.auto">validate</property> <!-- FIXME should be "validate" -->
     </session-factory>
 </hibernate-configuration>
