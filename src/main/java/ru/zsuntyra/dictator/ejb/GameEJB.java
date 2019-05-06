@@ -3,6 +3,7 @@ package ru.zsuntyra.dictator.ejb;
 import lombok.Getter;
 import lombok.Setter;
 import ru.zsuntyra.dictator.domain.*;
+import ru.zsuntyra.dictator.repository.AssociateRepository;
 import ru.zsuntyra.dictator.repository.QuestionRepository;
 import ru.zsuntyra.dictator.repository.RatingRepository;
 import ru.zsuntyra.dictator.repository.UserRepository;
@@ -28,6 +29,8 @@ public class GameEJB {
     @Inject
     private UserRepository userRepository;
 
+    @Inject
+    private AssociateRepository associateRepository;
     @EJB
     private TokenEJB tokenEJB;
 
@@ -88,6 +91,10 @@ public class GameEJB {
         userRepository.update(user);
     }
 
+    public List<Associate> getAllUserAssociate(){
+        User user = authEJB.getAuthorizedUser();
+        return associateRepository.findAllByUser(user);
+    }
     private void updateRatingAfterGame() {
         User user = authEJB.getAuthorizedUser();
         Rating rating = ratingRepository.findByUserId(user.getId());

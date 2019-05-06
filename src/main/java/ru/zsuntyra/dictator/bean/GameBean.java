@@ -36,6 +36,14 @@ public class GameBean implements Serializable {
     private Fraction userFraction;
     private List<Associate> associates = Collections.emptyList();
 
+    public List<Associate> getAllAssciate(){
+        return gameEJB.getAllUserAssociate();
+    }
+
+    public void addAssociate(Associate associate){
+        associates.set(1,associate);
+    }
+
     public boolean startGame() {
         if (userFraction != null) {
             gameState = gameEJB.startGame(userFraction, associates);
